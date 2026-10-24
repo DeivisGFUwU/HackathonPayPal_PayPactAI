@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PayPactAgreement",
+  "type": "object",
+  "required": ["id", "cliente", "freelancer", "moneda", "etapas", "hash"],
+  "properties": {
+    "id": { "type": "string" },
+    "cliente": {
+      "type": "object",
+      "required": ["email"],
+      "properties": { "email": { "type": "string", "format": "email" } }
+    },
+    "freelancer": {
+      "type": "object",
+      "required": ["email"],
+      "properties": { "email": { "type": "string", "format": "email" } }
+    },
+    "moneda": { "type": "string", "default": "USD" },
+    "etapas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["n", "monto", "entregable", "plazo", "criterios"],
+        "properties": {
+          "n": { "type": "integer" },
+          "monto": { "type": "string" },
+          "entregable": { "type": "string" },
+          "plazo": { "type": "string" },
+          "criterios": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "texto", "peso"],
+              "properties": {
+                "id": { "type": "string" },
+                "texto": { "type": "string" },
+                "peso": { "type": "integer", "maximum": 50 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "hash": { "type": "string" }
+  }
+}

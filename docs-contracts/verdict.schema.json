@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PayPactVerdict",
+  "type": "object",
+  "required": ["acuerdo_id", "etapa", "prompt_injection_detectado", "criterios"],
+  "properties": {
+    "acuerdo_id": { "type": "string" },
+    "etapa": { "type": "integer" },
+    "prompt_injection_detectado": { "type": "boolean" },
+    "criterios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "resultado", "confianza", "explicacion"],
+        "properties": {
+          "id": { "type": "string" },
+          "resultado": { "type": "string", "enum": ["cumple", "parcial", "no_cumple"] },
+          "confianza": { "type": "number", "minimum": 0, "maximum": 1 },
+          "explicacion": { "type": "string" }
+        }
+      }
+    }
+  }
+}
